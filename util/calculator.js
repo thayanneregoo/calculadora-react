@@ -13,3 +13,38 @@ export const handleNumber =(value, state)=>{
         currentValue:`${state.currentValueg}${value}`,
     };
 };
+
+const handleEqual = (state) =>{
+    const {currentValue, previusValue,operator} = state;
+    const current = parseFloat(currentValue)
+    const previus = parseFloat(previusValue)
+    const resetState = {operator: null, previusValue: null};
+    switch(operator){
+        case "+":
+            return{
+                currentValue:`${previus+current}`,
+                ...resetState
+            };
+        case "-":
+            return{
+                currentValue:`${previus-current}`,
+                ...resetState
+            };
+        case "*":
+            return{
+                currentValue:`${previus*current}`,
+                ...resetState
+            };
+        case "/":
+            return{
+                currentValue:`${previus/current}`,
+                ...resetState
+            };
+
+        default:
+            return state;
+        
+    };
+}
+
+//função da calculadora (limpar, porcentagem, igual...)
