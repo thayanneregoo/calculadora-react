@@ -48,3 +48,31 @@ const handleEqual = (state) =>{
 }
 
 //função da calculadora (limpar, porcentagem, igual...)
+const calculator = (type, value, state)=>{
+    switch(type){
+        case "number":
+            return handleNumber(value, state);
+        case "clear":
+            return initalState;
+        case "posneg":
+            return{
+                currentValue:`${parseFloat(state.currentValue)*(-1)}`,
+            }
+        case "percentage":
+            return{
+                currentValue:`${parseFloat(state.currentValue)*0.01}`,
+            }
+        case "operator":
+            return{
+                    operator:value,
+                    previusValue: state.currentValue,
+                    currentValue:"0",
+                }
+        case "equal":
+            return handleEqual(state);
+
+        default:
+            return state;
+    }
+}
+export default calculator;
